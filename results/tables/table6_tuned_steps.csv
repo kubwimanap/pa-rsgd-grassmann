@@ -1,0 +1,17 @@
+scenario,method,tuned_eta
+Synthetic N,rsgd,0.179845
+Synthetic N,oja,0.179845
+Synthetic N,landing,0.179845
+Synthetic S,rsgd,0.003
+Synthetic S,oja,0.003
+Synthetic S,landing,0.003
+Synthetic N+S,rsgd,0.003
+Synthetic N+S,oja,0.003
+Synthetic N+S,landing,0.003
+Synthetic N+S+G,rsgd,0.003
+Synthetic N+S+G,oja,0.003
+Synthetic N+S+G,landing,0.003
+Digits N+S+G,rsgd,0.0050043
+Digits N+S+G,oja,0.0050043
+Digits N+S+G,landing,0.0050043
+Digits N+S+G,rsvrg,0.107814

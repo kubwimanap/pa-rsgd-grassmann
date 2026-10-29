@@ -1,0 +1,30 @@
+cff-version: 1.2.0
+message: "If you use this code, please cite the article below."
+title: "pa-rsgd-grassmann: code and data for RSGD on the Grassmann manifold under interacting rounding, stochastic-gradient and retraction errors"
+authors:
+  - family-names: Kubwimana
+    given-names: Pascal
+    orcid: "https://orcid.org/0009-0008-5610-6855"
+    affiliation: "University of Dodoma"
+  - family-names: Reddy
+    given-names: B. Prabhakar
+    orcid: "https://orcid.org/0000-0002-1776-5064"
+    affiliation: "University of Dodoma"
+  - family-names: Mkenyeleye
+    given-names: Jason M.
+    orcid: "https://orcid.org/0000-0003-2909-8622"
+    affiliation: "University of Dodoma"
+license: MIT
+repository-code: "https://github.com/kubwimanap/pa-rsgd-grassmann"
+preferred-citation:
+  type: article
+  title: "Riemannian Stochastic Gradient Descent on the Grassmann Manifold under Interacting Rounding, Stochastic-Gradient and Retraction Errors"
+  authors:
+    - family-names: Kubwimana
+      given-names: Pascal
+    - family-names: Reddy
+      given-names: B. Prabhakar
+    - family-names: Mkenyeleye
+      given-names: Jason M.
+  status: submitted
+  year: 2026

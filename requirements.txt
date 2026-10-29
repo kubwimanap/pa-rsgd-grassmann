@@ -1,0 +1,6 @@
+numpy>=1.24
+scipy>=1.10
+matplotlib>=3.7
+scikit-learn>=1.3
+# optional: native reduced-precision kernels for Table S5
+# jax[cpu]>=0.4

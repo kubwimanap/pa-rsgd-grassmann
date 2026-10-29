@@ -1,0 +1,3 @@
+applied_in,step,eta,error
+Synthetic N,step tuned under noise,0.003,1.6578
+Synthetic S,step tuned under precision,0.179845,0.983026

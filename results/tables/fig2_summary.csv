@@ -1,0 +1,7 @@
+group,configs,ratio_min,ratio_median,ratio_max,vacuous,exceeded
+"exact, stochastic",69,0.118728,0.249011,0.367407,,
+"SR, stochastic",136,0.0867749,0.208533,0.334007,,
+"RN, stochastic",138,0.00211762,0.129783,0.519119,,
+"RN, full gradient",48,0.0156154,0.0460168,0.0742361,,
+"SR, full gradient",48,0.00330386,0.0128191,0.026924,,
+all,456,,,,17,0

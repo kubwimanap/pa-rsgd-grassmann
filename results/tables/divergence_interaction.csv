@@ -1,0 +1,5 @@
+case,diverged,error_finite_runs,drift_finite_runs
+"noise only (gamma=0, b=16)",0/10,1.19116,1.59029e-15
+"defect only (gamma=0.99, exact gradient)",0/10,3.73668e-15,0.46007
+"both (gamma=0.99, b=16)",10/10,nan,nan
+"both, PA-RSGD",0/10,0.175833,0.0095345
