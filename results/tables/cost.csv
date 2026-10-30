@@ -1,0 +1,11 @@
+problem,method,step,us_per_iteration,relative_cost_per_iteration,target,reached,iterations_to_target,seconds_to_target,final_error,seeds
+synthetic,"RSGD, fixed step",0.02,137.713,1,0.2,0/3,nan,nan,0.337167,3
+synthetic,"RSGD, decaying step",0.02,130.048,0.944341,0.2,3/3,360,0.0468173,0.0794145,3
+synthetic,"RSGD, tuned step",0.003,157.125,1.14096,0.2,3/3,930,0.146126,0.129473,3
+synthetic,Landing (tuned step),0.003,119.592,0.868415,0.2,3/3,930,0.111221,0.129475,3
+synthetic,PA-RSGD,PA,358.347,2.60213,0.2,3/3,460,0.16484,0.138729,3
+spiked,"RSGD, fixed step",0.02,12091.2,1,1.8,0/3,nan,nan,2.70082,3
+spiked,"RSGD, decaying step",0.02,12553.3,1.03822,1.8,3/3,690,8.66178,1.29906,3
+spiked,"RSGD, tuned step",0.003,12544.5,1.03749,1.8,3/3,800,10.0356,1.50656,3
+spiked,Landing (tuned step),0.003,10087.9,0.834316,1.8,3/3,800,8.0703,1.50759,3
+spiked,PA-RSGD,PA,19468.6,1.61015,1.8,3/3,1760,34.2647,1.77179,3

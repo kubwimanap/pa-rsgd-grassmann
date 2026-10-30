@@ -21,6 +21,7 @@ ORDER = [
     "replication_and_stability.py",    # Table S4, Section 3.2 checks
     "formats.py",                      # Table S5
     "convergence_floors.py",           # Figure 2
+    "cost.py",                         # computational cost (Section 3.3)
     "paper_numbers.py",                # PAPER_NUMBERS.md (numbers quoted in the text)
     "compare_with_paper.py",           # COMPARISON.md
 ]

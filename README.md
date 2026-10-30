@@ -33,19 +33,23 @@ COMPARISON.md              values of the earlier manuscript draft next to the va
 
 ## Which script produces what
 
+Table numbers follow the article (Table 1 and Table 2 are literature tables, Table 3 maps results to experiments);
+the CSV file names keep an earlier numbering.
+
 | Article item | Script | Output |
 |---|---|---|
 | Table S3, Figure 4, SR vs RN at t = 7 | `individual_perturbations.py` | `tableS3_individual.csv`, `fig4_*.csv`, `sr_vs_rn_t7.csv`, `fig4_scaling` |
-| Table 4, Table S2, Figure 5 | `factorial_interaction.py` | `table4_contrasts.csv`, `tableS2_additivity.csv`, `fig5_additivity` |
+| Table 5, Table S2, Figure 5 | `factorial_interaction.py` | `table4_contrasts.csv`, `tableS2_additivity.csv`, `fig5_additivity` |
 | Table S1, Figure 3, drift-stability edges | `stability_boundaries.py` | `tableS1_stability.csv`, `scheme_edges.csv`, `fig3_stability` |
-| Table 3 | `practical_retractions.py` | `table3_practical_retractions.csv` |
-| Table 5 | `ablation.py` | `table5_ablation.csv`, `table5_precision_always.csv` |
-| Table 6 | `baselines.py` | `table6_*.csv` |
+| Table 4 | `practical_retractions.py` | `table3_practical_retractions.csv` |
+| Table 6 | `ablation.py` | `table5_ablation.csv`, `table5_precision_always.csv` |
+| Table 7 | `baselines.py` | `table6_*.csv` |
 | Figure S1 | `figS1_digits.py` | `figS1_digits_traces.csv`, `figS1_digits` |
 | Spiked problem, n = 10^4 (Section 3.3) | `large_problem.py` | `large_spiked.csv` |
 | Table S4, divergence, reconstruction, damping (Section 3.2) | `replication_and_stability.py` | `tableS4_replication.csv`, `divergence_interaction.csv`, `reconstruction_drift.csv`, `damping_F2.csv`, `hopkins_methods.csv` |
 | Table S5 | `formats.py` | `tableS5_formats.csv` |
 | Figure 2 | `convergence_floors.py` | `fig2_floors.csv`, `fig2_summary.csv`, `fig2_floors` |
+| Computational cost (Section 3.3) | `cost.py` | `cost.csv` |
 | Every number quoted in the text | `paper_numbers.py` | `PAPER_NUMBERS.md`, `paper_numbers.csv` |
 | Figures from the CSV files (no simulation) | `make_figures.py` | `results/figures/*` |
 | Manuscript draft vs repository | `compare_with_paper.py` | `COMPARISON.md` |
