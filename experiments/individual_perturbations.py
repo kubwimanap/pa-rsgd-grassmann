@@ -15,7 +15,7 @@ import numpy as np
 
 from parsgd import Arith, Retraction, random_start, rsgd, synthetic
 from parsgd.bounds import constants_at_solution, drift_bounds
-from parsgd.util import mean_ci, parse, pmap, savefig, write_csv
+from parsgd.util import parse, pmap, write_csv
 
 P = synthetic(0)
 
@@ -92,28 +92,9 @@ def main():
         fc.append(dict(gamma=g, b=b, t="inf" if t is None else t, drift_obs=obs, bound_D2=D2, ratio=obs / D2))
     write_csv("fig4c_drift_vs_bound.csv", fc)
 
-    # ---------------- figure -------------------------------------------
-    import matplotlib
-    matplotlib.use("Agg")
-    import matplotlib.pyplot as plt
+    from make_figures import fig4
 
-    fig, ax = plt.subplots(1, 3, figsize=(13, 3.8))
-    x = np.array([r["u_over_eta"] for r in fa]); y = np.array([r["err"] for r in fa])
-    sl = np.polyfit(np.log(x), np.log(y), 1)[0]
-    ax[0].loglog(x, y, "o", ms=4)
-    ax[0].set(xlabel="u / eta", ylabel="stationary ||sin Theta||_F", title=f"(a) precision floor (slope {sl:.2f})")
-    x = np.array([r["eta_over_b"] for r in fb]); y = np.array([r["err2"] for r in fb])
-    sl = np.polyfit(np.log(x), np.log(y), 1)[0]
-    ax[1].loglog(x, y, "o", ms=4)
-    ax[1].set(xlabel="eta / b", ylabel="squared stochastic floor", title=f"(b) stochastic floor (slope {sl:.2f})")
-    x = np.array([r["bound_D2"] for r in fc]); y = np.array([r["drift_obs"] for r in fc])
-    ax[2].loglog(x, y, "o", ms=4)
-    lim = [min(x.min(), y.min()) / 2, max(x.max(), y.max()) * 2]
-    ax[2].loglog(lim, lim, "k--", lw=1)
-    ax[2].set(xlabel="a-priori bound D_inf^(2)", ylabel="observed drift", title="(c) drift vs Theorem 1(iii)")
-    fig.tight_layout()
-    savefig(fig, "fig4_scaling")
-
+    fig4()
 
 if __name__ == "__main__":
     main()

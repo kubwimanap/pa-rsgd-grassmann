@@ -142,9 +142,14 @@ def digits(p=5):
     return Rayleigh(A=A, data=X, p=p, name="digits")
 
 
-def from_data(W, p, name):
-    """PCA problem for a data matrix W (n x N), samples drawn from the columns."""
-    W = W - W.mean(axis=1, keepdims=True)
+def from_data(W, p, name, center=True):
+    """Subspace problem for a data matrix W (n x N), samples drawn from the columns.
+
+    With ``center=False`` the second-moment matrix of the raw columns is used
+    (linear subspace through the origin, as for rigid-motion trajectories)."""
+    W = np.asarray(W, float)
+    if center:
+        W = W - W.mean(axis=1, keepdims=True)
     W = W * np.sqrt(4.0 / np.linalg.eigvalsh(W @ W.T / W.shape[1]).max())   # lambda_1 = 4
     return Rayleigh(A=W @ W.T / W.shape[1], data=W, p=p, name=name)
 
@@ -155,8 +160,13 @@ def from_data(W, p, name):
 HOPKINS_SEQUENCES = ("1R2RC", "1R2RCR")
 
 
-def hopkins_problems(root=None, p=3, sequences=HOPKINS_SEQUENCES):
-    """Per-motion PCA problems from Hopkins 155 sequences.
+def hopkins_problems(root=None, p=2, sequences=HOPKINS_SEQUENCES):
+    """Per-motion subspace problems from Hopkins 155 sequences.
+
+    Each problem estimates the dominant p = 2 dimensional subspace of the
+    centred 2F x P_m trajectory matrix of one motion.  (With p = 3 the gap
+    lambda_3 - lambda_4 of these sequences is below 0.01 after scaling, so the
+    problem is ill-conditioned; with p = 2 the gap is 0.9-2.5.)
 
     Expects ``<root>/<seq>/<seq>_truth.mat`` (the original Hopkins 155 files,
     variables ``x`` (3 x P x F) and ``s`` (motion labels)).  Returns an empty
@@ -170,7 +180,6 @@ def hopkins_problems(root=None, p=3, sequences=HOPKINS_SEQUENCES):
             continue
         M = loadmat(f)
         x, s = M["x"], M["s"].ravel()
-        P, F = x.shape[1], x.shape[2]
         W = np.concatenate([x[0], x[1]], axis=1).T     # 2F x P trajectory matrix
         for lab in np.unique(s):
             probs.append(from_data(W[:, s == lab], p, f"{seq}_motion{lab}"))

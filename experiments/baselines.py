@@ -17,7 +17,7 @@ import numpy as np
 
 from parsgd import (Arith, PAConfig, Retraction, digits, pa_rsgd, random_start, rsgd, rsvrg,
                     synthetic)
-from parsgd.util import mean_ci, parse, pmap, savefig, write_csv
+from parsgd.util import mean_ci, parse, pmap, write_csv
 
 PROB = {"synthetic": synthetic(0), "digits": digits(5)}
 SCEN = {

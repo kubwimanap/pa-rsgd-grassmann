@@ -1,0 +1,33 @@
+format,accumulation,scenario,method,mean,ci,seeds
+binary16,wide accumulator,N,"RSGD, fixed eta",0.0138542,0.0004389,10
+binary16,wide accumulator,N,"RSGD, decaying eta",0.0337935,0.00352084,10
+binary16,wide accumulator,N,PA-RSGD,0.000611971,2.32719e-05,10
+binary16,wide accumulator,N+S+G,"RSGD, fixed eta",0.336113,0.00224854,10
+binary16,wide accumulator,N+S+G,"RSGD, decaying eta",0.0788805,0.00132322,10
+binary16,wide accumulator,N+S+G,PA-RSGD,0.139268,0.0019426,10
+binary16,low-precision accumulation,N,"RSGD, fixed eta",0.0124569,0.000492227,10
+binary16,low-precision accumulation,N,"RSGD, decaying eta",0.0324423,0.003625,10
+binary16,low-precision accumulation,N,PA-RSGD,0.000992914,2.24588e-05,10
+binary16,low-precision accumulation,N+S+G,"RSGD, fixed eta",0.336128,0.00224395,10
+binary16,low-precision accumulation,N+S+G,"RSGD, decaying eta",0.0788859,0.00133574,10
+binary16,low-precision accumulation,N+S+G,PA-RSGD,0.139283,0.00194533,10
+binary16,native XLA kernel,N,"RSGD, fixed eta",0.0135703,0.00067129,5
+binary16,native XLA kernel,N,PA-RSGD,0.000615172,1.88675e-05,5
+binary16,native XLA kernel,N+S+G,"RSGD, fixed eta",0.33737,0.00272445,5
+binary16,native XLA kernel,N+S+G,PA-RSGD,0.140206,0.00296444,5
+bfloat16,wide accumulator,N,"RSGD, fixed eta",0.099054,0.00404771,10
+bfloat16,wide accumulator,N,"RSGD, decaying eta",0.188275,0.0162935,10
+bfloat16,wide accumulator,N,PA-RSGD,0.00507158,0.000172647,10
+bfloat16,wide accumulator,N+S+G,"RSGD, fixed eta",0.33652,0.00222782,10
+bfloat16,wide accumulator,N+S+G,"RSGD, decaying eta",0.0857648,0.00154744,10
+bfloat16,wide accumulator,N+S+G,PA-RSGD,0.141084,0.00186835,10
+bfloat16,low-precision accumulation,N,"RSGD, fixed eta",0.0898459,0.00365658,10
+bfloat16,low-precision accumulation,N,"RSGD, decaying eta",0.180071,0.0164778,10
+bfloat16,low-precision accumulation,N,PA-RSGD,0.00794031,0.000168427,10
+bfloat16,low-precision accumulation,N+S+G,"RSGD, fixed eta",0.336552,0.00223841,10
+bfloat16,low-precision accumulation,N+S+G,"RSGD, decaying eta",0.0856713,0.00116447,10
+bfloat16,low-precision accumulation,N+S+G,PA-RSGD,0.140878,0.00180275,10
+bfloat16,native XLA kernel,N,"RSGD, fixed eta",0.098631,0.00696144,5
+bfloat16,native XLA kernel,N,PA-RSGD,0.004968,0.00024274,5
+bfloat16,native XLA kernel,N+S+G,"RSGD, fixed eta",0.33765,0.00266434,5
+bfloat16,native XLA kernel,N+S+G,PA-RSGD,0.141867,0.0029105,5

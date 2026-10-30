@@ -14,7 +14,7 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 import numpy as np
 
 from parsgd import Arith, PAConfig, Retraction, digits, pa_rsgd, random_start, rsgd
-from parsgd.util import parse, pmap, read_csv, savefig, write_csv
+from parsgd.util import parse, pmap, read_csv, write_csv
 
 P = digits(5)
 PANELS = {"(a) Digits, S only": dict(t=None, b=8, gamma=0.0), "(b) Digits, N+S+G": dict(t=8, b=8, gamma=0.9)}
@@ -45,30 +45,20 @@ def main():
     res = pmap(job, [dict(panel=p, method=m, eta=eta, seed=s, K=K) for p in PANELS for m in METHODS
                      for s in range(5)], a.workers)
 
-    import matplotlib
-    matplotlib.use("Agg")
-    import matplotlib.pyplot as plt
-
-    f, ax = plt.subplots(1, 2, figsize=(11, 3.8), sharey=True)
     rows = []
-    for k, p in enumerate(PANELS):
+    for p in PANELS:
         for m in METHODS:
             rr = [r for r in res if r["panel"] == p and r["method"] == m]
             n = min(len(r["err"]) for r in rr)
             it = np.asarray(rr[0]["it"][:n])
             E = np.array([r["err"][:n] for r in rr])
             q1, med, q3 = np.percentile(E, [25, 50, 75], axis=0)
-            ax[k].plot(it, med, label=m)
-            ax[k].fill_between(it, q1, q3, alpha=0.2)
-            for j in range(0, n, 10):
-                rows.append(dict(panel=p, method=m, iteration=int(it[j]), median=med[j], q25=q1[j], q75=q3[j]))
-        ax[k].set(title=p, xlabel="iteration", yscale="log")
-    ax[0].set_ylabel("||sin Theta||_F (median, IQR over 5 seeds)")
-    ax[1].legend(fontsize=8)
-    f.tight_layout()
-    savefig(f, "figS1_digits")
+            rows += [dict(panel=p, method=m, iteration=int(it[j]), median=med[j], q25=q1[j], q75=q3[j])
+                     for j in range(n)]
     write_csv("figS1_digits_traces.csv", rows)
+    from make_figures import figS1
 
+    figS1()
 
 if __name__ == "__main__":
     main()

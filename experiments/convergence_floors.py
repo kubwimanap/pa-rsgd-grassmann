@@ -21,7 +21,7 @@ import numpy as np
 
 from parsgd import Arith, Retraction, near_solution, rsgd, synthetic
 from parsgd.bounds import constants_at_solution, floor_bound
-from parsgd.util import parse, pmap, savefig, write_csv
+from parsgd.util import parse, pmap, write_csv
 
 TAILS = (1.0, 2.0, 2.3)
 PROBS = {tl: synthetic(0, tail=(0.2, tl)) for tl in TAILS}
@@ -85,32 +85,9 @@ def main():
     write_csv("fig2_summary.csv", summ, ["group", "configs", "ratio_min", "ratio_median", "ratio_max",
                                           "vacuous", "exceeded"])
 
-    import matplotlib
-    matplotlib.use("Agg")
-    import matplotlib.pyplot as plt
+    from make_figures import fig2
 
-    f, ax = plt.subplots(1, 2, figsize=(11, 4))
-    cols = {"exact": "k", "SR": "C0", "RN": "C3"}
-    ok = [r for r in rows if not r["vacuous"] and np.isfinite(r["bound"])]
-    for key, col in cols.items():
-        rr = [r for r in ok if r["arith"].startswith(key)]
-        ax[0].loglog([r["bound"] for r in rr], [r["observed_g2"] for r in rr], "o", ms=3, color=col, label=key, alpha=0.7)
-    lim = [min(r["bound"] for r in ok) / 3, max(r["bound"] for r in ok) * 3]
-    ax[0].loglog(lim, lim, "k--", lw=1)
-    ax[0].set(xlabel="predicted floor (18)/(19)", ylabel="observed stationary ||grad f||^2", title="(a)")
-    ax[0].legend(fontsize=8)
-    data = [[r["ratio"] for r in ok if sel(r)] for _, sel in
-            (("", lambda r: r["arith"] == "exact"), ("", lambda r: r["arith"].startswith("SR") and r["b"] != "full"),
-             ("", lambda r: r["arith"].startswith("RN") and r["b"] != "full"),
-             ("", lambda r: r["arith"].startswith("SR") and r["b"] == "full"),
-             ("", lambda r: r["arith"].startswith("RN") and r["b"] == "full"))]
-    ax[1].boxplot([d if d else [np.nan] for d in data])
-    ax[1].set_xticks(range(1, 6))
-    ax[1].set_xticklabels(["exact", "SR", "RN", "SR full", "RN full"])
-    ax[1].set(yscale="log", ylabel="observed / predicted", title="(b)")
-    f.tight_layout()
-    savefig(f, "fig2_floors")
-
+    fig2()
 
 if __name__ == "__main__":
     main()

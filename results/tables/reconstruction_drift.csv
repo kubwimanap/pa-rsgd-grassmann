@@ -1,4 +1,4 @@
-eta,drift,reconstruction_increase_pct
-0.02,6.6136e-16,-1.4803e-14
-0.3,0.454292,2.4462
-0.4,0.690396,5.13086
+case,eta,drift,reconstruction_increase_pct
+"exact gradient, gamma=0.99, eta=0.3",0.3,0.454292,2.4462
+"exact gradient, gamma=0.99, eta=0.4",0.4,0.690396,5.13086
+level A,0.02,0.0231188,0.00497424

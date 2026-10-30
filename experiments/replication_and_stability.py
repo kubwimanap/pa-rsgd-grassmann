@@ -14,7 +14,6 @@ Outputs
   results/tables/damping_F2.csv
   results/tables/hopkins_methods.csv   (only if the Hopkins data are present)
 """
-import itertools
 import os
 import sys
 
@@ -22,9 +21,9 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
 import numpy as np
 
-from parsgd import (Arith, F2Extension, PAConfig, Retraction, Robust, hopkins_problems, orth,
+from parsgd import (Arith, F2Extension, Retraction, Robust, hopkins_problems, orth,
                     pa_rsgd, random_start, rsgd, synthetic)
-from parsgd.algorithms import Trace, apply_retraction, direction, drift
+from parsgd.algorithms import apply_retraction, direction, drift
 from parsgd.util import parse, pmap, write_csv
 
 P = synthetic(0)
@@ -57,12 +56,18 @@ def div_job(c):
 
 
 def recon_job(c):
+    """Exact gradient with gamma = 0.99 at step eta, or the factorial level A
+    (t = 7, b = 32, gamma = 0.9, eta = 0.02) when c["case"] == "level A"."""
     rng = np.random.default_rng(6500 + c["seed"])
     X0 = random_start(P.n, P.p, rng)
-    X, ar = X0.copy(), Arith()
+    if c["case"] == "level A":
+        ar, R, b, eta = Arith(7, "RN", rng), Retraction("surrogate", 0.9), 32, 0.02
+    else:
+        ar, R, b, eta = Arith(), Retraction("surrogate", 0.99), None, c["eta"]
+    X = ar.fl(X0.copy())
     for k in range(c["K"]):
-        d = direction(P, X, None, ar)
-        X = apply_retraction(Retraction("surrogate", 0.99), X - c["eta"] * d, k, ar)
+        d = direction(P, X, P.sample(rng, b), ar)
+        X = apply_retraction(R, ar.fl(X - ar.scale(eta, d)), k, ar)
     test = P.sample(np.random.default_rng(1), 2000)
     Q = orth(X)
     e_proj = np.linalg.norm(test - Q @ (Q.T @ test)) ** 2
@@ -117,7 +122,6 @@ def main():
         meths = ("RSGD, fixed step", "RSGD, decaying step", "PA-RSGD")
         res = pmap(hop_job, [dict(idx=i, method=m, seed=s, K=K) for i in range(len(HOPKINS)) for m in meths
                              for s in range(2 if a.quick else 3)], a.workers)
-        from parsgd.util import mean_ci
         write_csv("hopkins_methods.csv",
                   [dict(method=m, problems=len(HOPKINS),
                         error_mean=float(np.mean([r["err"] for r in res if r["method"] == m])),
@@ -142,12 +146,14 @@ def main():
     write_csv("divergence_interaction.csv", out)
 
     # ---- reconstruction with X X^T ---------------------------------------
-    res = pmap(recon_job, [dict(eta=e, seed=s, K=1500) for e in (0.02, 0.3, 0.4) for s in range(2 if a.quick else 3)],
-               a.workers)
+    cases = [("exact gradient, gamma=0.99, eta=0.3", 0.3), ("exact gradient, gamma=0.99, eta=0.4", 0.4),
+             ("level A", 0.02)]
+    res = pmap(recon_job, [dict(case=cs, eta=e, seed=s, K=1500 if cs != "level A" else K)
+                           for cs, e in cases for s in range(2 if a.quick else 3)], a.workers)
     write_csv("reconstruction_drift.csv",
-              [dict(eta=e, drift=np.mean([r["drift"] for r in res if r["eta"] == e]),
-                    reconstruction_increase_pct=np.mean([r["increase_pct"] for r in res if r["eta"] == e]))
-               for e in (0.02, 0.3, 0.4)])
+              [dict(case=cs, eta=e, drift=np.mean([r["drift"] for r in res if r["case"] == cs]),
+                    reconstruction_increase_pct=np.mean([r["increase_pct"] for r in res if r["case"] == cs]))
+               for cs, e in cases])
 
     # ---- damping assumption with F2 -----------------------------------------
     res = pmap(f2_job, [dict(s=s_, gamma=g, seed=i, K=K) for s_ in (1.0, 0.2) for g in (0.9, 0.99) for i in range(6)],

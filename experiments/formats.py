@@ -9,6 +9,7 @@ Scenarios: N only, and N+S+G (b = 16, gamma = 0.95).
 
 Outputs
   results/tables/tableS5_formats.csv
+  results/tables/tableS5_formats_raw.csv   (unformatted means and CIs)
 """
 import os
 import sys
@@ -63,7 +64,7 @@ def main():
                         c = dict(fmt=f, acc="native", scenario=s, method=m, seed=i, K=K)
                         rng = np.random.default_rng(8000 + i)
                         res.append(dict(c, err=run(c, NativeArith(f, rng), rng).stationary("err")))
-    rows = []
+    rows, raw = [], []
     names = {"wide": "wide accumulator", "low": "low-precision accumulation", "native": "native XLA kernel"}
     for f in ("binary16", "bfloat16"):
         for acc in ("wide", "low", "native"):
@@ -76,12 +77,15 @@ def main():
                     if rr:
                         mu, h = mean_ci(rr)
                         row[m] = f"{mu:.4f} ± {h:.4f} ({len(rr)} seeds)"
+                        raw.append(dict(format=f, accumulation=names[acc], scenario=s, method=m,
+                                        mean=mu, ci=h, seeds=len(rr)))
                         any_ = True
                     else:
                         row[m] = "NA"
                 if any_:
                     rows.append(row)
     write_csv("tableS5_formats.csv", rows, ["format", "accumulation", "scenario"] + list(METHODS))
+    write_csv("tableS5_formats_raw.csv", raw)
 
 
 if __name__ == "__main__":

@@ -20,7 +20,7 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 import numpy as np
 
 from parsgd import Arith, Retraction, random_start, rsgd, synthetic
-from parsgd.util import bootstrap_ci, parse, pmap, savefig, write_csv
+from parsgd.util import bootstrap_ci, parse, pmap, write_csv
 
 P = synthetic(0)
 LEVELS = {
@@ -97,29 +97,9 @@ def main():
     write_csv("table4_contrasts.csv", t4)
     write_csv("tableS2_additivity.csv", s2)
 
-    import matplotlib
-    matplotlib.use("Agg")
-    import matplotlib.pyplot as plt
+    from make_figures import fig5
 
-    f, ax = plt.subplots(1, 2, figsize=(11, 3.8))
-    labels, xs = [], 0
-    for lev in ("A", "B"):
-        for r in [r for r in s2 if r["level"] == lev]:
-            ax[0].bar(xs - 0.25, r["observed_error"], 0.25, color="C0", label="observed" if xs == 0 else None)
-            ax[0].bar(xs, r["additive_prediction"], 0.25, color="C1", label="additive" if xs == 0 else None)
-            ax[0].bar(xs + 0.25, r["dithering_prediction"], 0.25, color="C2", label="dithering (20)" if xs == 0 else None)
-            ax[1].bar(xs - 0.15, max(r["observed_drift"], 1e-16), 0.3, color="C0", label="observed" if xs == 0 else None)
-            ax[1].bar(xs + 0.15, max(r["additive_drift"], 1e-16), 0.3, color="C1", label="sum of individual" if xs == 0 else None)
-            labels.append(f"{lev}:{r['combination']}")
-            xs += 1
-    for k in (0, 1):
-        ax[k].set_xticks(range(xs)); ax[k].set_xticklabels(labels, rotation=45, ha="right", fontsize=8)
-        ax[k].legend(fontsize=8)
-    ax[0].set(ylabel="stationary ||sin Theta||_F", title="(a) error")
-    ax[1].set_yscale("log"); ax[1].set(ylabel="drift D", title="(b) orthonormality drift")
-    f.tight_layout()
-    savefig(f, "fig5_additivity")
-
+    fig5()
 
 if __name__ == "__main__":
     main()

@@ -154,7 +154,16 @@ The repository is an independent implementation (new random streams), so numbers
 3. **Ablation.** Removing the noise step leaves PA-RSGD almost unchanged, because the horizon step eta_K takes over; the manuscript reports a return to fixed-step accuracy.
 4. **Vacuous bounds.** The corrected constant c_r of Lemma 1 enlarges the predicted drift, so slightly more configurations leave the invariant set of Theorem 1 than reported (see fig2_summary.csv). No observed floor exceeds its bound.
 5. **Low-precision accumulation.** Rounding every partial sum raises the PA-RSGD floor under precision alone by less than reported (Table S5): about 1.7x for binary16 and 1.5x for bfloat16, against about 4x in the manuscript.
-6. **Periodic re-orthonormalisation (T = 10).** The stationary drift averaged over the reset cycle is about three times the manuscript value (Table 3), and so is its S x G drift contrast (Table 4).
+6. **Hopkins 155.** The draft used per-motion problems with p = 3; for the sequence 1R2RC these are ill-conditioned (gap below 0.01 after scaling), so the repository uses centred trajectories with p = 2 (gaps 0.9-2.5) and, so far, the single sequence 1R2RC.
+7. **Periodic re-orthonormalisation (T = 10).** The stationary drift averaged over the reset cycle is about three times the manuscript value (Table 3), and so is its S x G drift contrast (Table 4).
 
 Everything else (interaction contrasts, stability edges, practical-scheme edges, scaling laws, divergence through interaction, damping test, floating-point formats) agrees with the manuscript within seed-to-seed variation.
+
+## Table S4 (Hopkins subset, stationary error; different problem set, see note 6)
+
+| Quantity | Manuscript | Repository |
+|---|---|---|
+| N | 0.4927 | 0.1887 |
+| S | 0.0209 | 0.0055 |
+| N+S | 0.3189 | 0.0517 |
 

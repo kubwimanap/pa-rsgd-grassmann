@@ -18,7 +18,7 @@ import numpy as np
 
 from parsgd import Arith, Retraction, random_start, rsgd, synthetic
 from parsgd.bounds import surrogate_edge
-from parsgd.util import parse, pmap, savefig, write_csv
+from parsgd.util import parse, pmap, write_csv
 
 P = synthetic(0)
 GRID = np.geomspace(0.1, 1.2, 40)
@@ -95,23 +95,9 @@ def main():
                        inside=bool(lo is not None and lo <= pred <= hi)))
     write_csv("scheme_edges.csv", er)
 
-    import matplotlib
-    matplotlib.use("Agg")
-    import matplotlib.pyplot as plt
+    from make_figures import fig3
 
-    fig, ax = plt.subplots(figsize=(6, 4))
-    gg = np.linspace(0.25, 0.995, 200)
-    for tag, mu, col, lab in (("exact", mu_exact, "C0", "exact gradient"), ("b32", mu_32, "C1", "b = 32")):
-        for r in rows:
-            lo, hi = r[f"{tag}_last_stable"], r[f"{tag}_first_unstable"]
-            if lo is None or not np.isfinite(hi):
-                continue
-            ax.errorbar(r["gamma"], 0.5 * (lo + hi), yerr=0.5 * (hi - lo), fmt="o", color=col, ms=4)
-        ax.plot(gg, [surrogate_edge(g, mu) for g in gg], "-", color=col, label=f"eta_G(gamma), {lab}")
-    ax.set(xlabel="defect gamma", ylabel="largest stable step", ylim=(0, 1.3))
-    ax.legend(fontsize=8)
-    savefig(fig, "fig3_stability")
-
+    fig3()
 
 if __name__ == "__main__":
     main()

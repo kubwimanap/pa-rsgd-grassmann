@@ -1,0 +1,89 @@
+section,statement
+3.1 Figure 2,configurations 456; exceeded 0; vacuous 17
+3.1 Figure 2,"vacuous configurations (gap, b, eta, gamma): 0.206,8,0.02,0.9; 0.206,8,0.05,0.9; 0.505,8,0.02,0.9; 0.505,8,0.05,0.9; 1.502,8,0.05,0.9"
+3.1 Figure 2,observed drift in vacuous configurations: 0.087-0.360; predicted drift 0.78-2.02
+3.1 Figure 2,"exact, stochastic: n=69, ratio 11.9%-36.7%, median 24.9%, log-log slope vs bound 0.89"
+3.1 Figure 2,"SR, stochastic: n=136, ratio 8.7%-33.4%, median 20.9%, log-log slope vs bound 0.92"
+3.1 Figure 2,"RN, stochastic: n=138, ratio 0.2%-51.9%, median 13.0%, log-log slope vs bound 0.48"
+3.1 Figure 2,"RN, full gradient: n=48, ratio 1.6%-7.4%, median 4.6%, log-log slope vs bound 1.12"
+3.1 Figure 2,"SR, full gradient: n=48, ratio 0.3%-2.7%, median 1.3%, log-log slope vs bound 0.92"
+3.1 Figure 2,"RN full gradient: floor ~ eta^-2.03 (range -2.21 to -1.91, 12 combinations)"
+3.1 Figure 2,SR lowers full-gradient floors by a factor 11-2259 (median 181)
+3.1 Figure 2,"sensitivity, drift x2: bound changes by median 0.8%, at most 127.0%"
+3.1 Figure 2,"sensitivity, drift x10: bound changes by median 3.8%, at most 168.1%"
+3.1 Figure 2,"sensitivity, Gamma_N x2: bound changes by median 12.3%, at most 41.4%"
+3.1 Figure 3 / Table 3,"gamma=0: exact-gradient boundary in [1.126, 1.200); b=32 boundary [0.260, 0.277)"
+3.1 Figure 3 / Table 3,exact gradient: predicted edge inside the bracket for 7/7 values gamma>=0.3
+3.1 Figure 3 / Table 3,"b=32, gamma>=0.7: predicted edge at most 6.1% above the bracket"
+3.1 Figure 3 / Table 3,mu_max (b=32) = 5.11
+3.1 Figure 3 / Table 3,L = lambda_1 - lambda_n = 3.80; 1/L = 0.263; ratio to gamma=0 boundary 4.3
+3.1 Figure 3 / Table 3,"no re-orthonormalization: predicted 0.250, bracket [0.244, 0.260), inside=True"
+3.1 Figure 3 / Table 3,"landing, lambda=0.5: predicted 0.222, bracket [0.215, 0.229), inside=True"
+3.1 Figure 3 / Table 3,"landing, lambda=1.0: predicted 0.200, bracket [0.189, 0.202), inside=True"
+3.1 Figure 3 / Table 3,"landing, lambda=2.0: predicted 0.167, bracket [0.166, 0.177), inside=True"
+3.1 Figure 3 / Table 3,observed drift / a-priori bound (all schemes but Newton-Schulz): 5.5%-38.5%
+3.1 Figure 3 / Table 3,"Newton-Schulz: drift 5.4e-06-1.4e-04 (exact arithmetic), observed / prediction 23.4%-38.8%"
+3.2,"precision floor t=12 0.0076, t=7 0.202, t=6 0.39 ± 0.03; mean factor per bit removed (t=12..7) 1.93"
+3.2,"noise floor b=4 0.65, b=128 0.12"
+3.2,G alone: error at most 5.0e-15
+3.2,"precision floor eps_N ~ 0.82 u/(eta delta), log-log slope 0.98"
+3.2,squared stochastic floor vs eta/b: slope 1.002
+3.2,drift / D_inf^(2) over 32 configurations: 0.14-0.52
+3.2,"t=7 no noise: SR 0.021, RN 0.202"
+3.2,"A, surrogate: error C_NS -0.1934, C_SG +5.4e-05; drift C_NG +0.0265 [+0.0209, +0.0347], C_SG +0.0119, C_NSG -0.0262 [-0.0344, -0.0207], drift C_NS -0.0001 [-0.0013, +0.0012]"
+3.2,"B, surrogate: error C_NS -0.0279, C_SG +9.4e-04; drift C_NG +0.0032 [+0.0027, +0.0037], C_SG +0.0773, C_NSG +0.0087 [+0.0082, +0.0092], drift C_NS -0.0009 [-0.0010, -0.0007]"
+3.2,"A, periodic (10): error C_NS -0.1934; drift C_SG +9.42e-03 [+9.38e-03, +9.46e-03]"
+3.2,"A, landing (0.5): error C_NS -0.1934; drift C_SG +1.91e-02 [+1.91e-02, +1.92e-02]"
+3.2,"A, Newton-Schulz: error C_NS -0.1934; drift C_SG +5.24e-06 [+5.03e-06, +5.44e-06]"
+3.2,"eta=0.3: noise only (gamma=0, b=16): diverged 0/10, error 1.191, drift 1.6e-15"
+3.2,"eta=0.3: defect only (gamma=0.99, exact gradient): diverged 0/10, error 0.000, drift 0.46"
+3.2,"eta=0.3: both (gamma=0.99, b=16): diverged 10/10, error nan, drift nan"
+3.2,"eta=0.3: both, PA-RSGD: diverged 0/10, error 0.176, drift 0.0095"
+3.2,"reconstruction with X X^T, exact gradient, gamma=0.99, eta=0.3: drift 0.454, increase 2.45%"
+3.2,"reconstruction with X X^T, exact gradient, gamma=0.99, eta=0.4: drift 0.69, increase 5.13%"
+3.2,"reconstruction with X X^T, level A: drift 0.0231, increase 0.00497%"
+3.2,"robust: N 0.194, S 0.285, N+S 0.285, I_err(N+S) 0.59; drift S 1.8e-15, G 7.8e-16, S+G 2.3e-02"
+3.2,"Hopkins: N 0.189, S 0.006, N+S 0.052, I_err(N+S) 0.27"
+3.2,"F2 with C=1.0A, gamma=0.9: diverged 0/6"
+3.2,"F2 with C=1.0A, gamma=0.99: diverged 0/6"
+3.2,"F2 with C=0.2A, gamma=0.9: diverged 0/6"
+3.2,"F2 with C=0.2A, gamma=0.99: diverged 6/6"
+3.3,"binary16 wide accumulator vs emulated t=11 (fixed-step RSGD, precision only): 0.0139 vs 0.0147"
+3.3,"bfloat16 wide accumulator vs emulated t=8 (fixed-step RSGD, precision only): 0.0991 vs 0.1059"
+3.3,"native vs simulated wide accumulator: within 1% in 6/8, max 2.0%"
+3.3,binary16 PA-RSGD precision only: wide 0.0006 -> low-precision accumulation 0.0010 (x1.6)
+3.3,"binary16 RSGD, fixed eta precision only: change -10.1%"
+3.3,"binary16 RSGD, decaying eta precision only: change -4.0%"
+3.3,bfloat16 PA-RSGD precision only: wide 0.0051 -> low-precision accumulation 0.0079 (x1.6)
+3.3,"bfloat16 RSGD, fixed eta precision only: change -9.3%"
+3.3,"bfloat16 RSGD, decaying eta precision only: change -4.4%"
+3.3,N+S+G: accumulation changes any method by at most 0.1%
+3.3,"N+S+G RSGD, fixed eta: binary16 0.3361 vs bfloat16 0.3365 (0.1%)"
+3.3,"N+S+G RSGD, decaying eta: binary16 0.0789 vs bfloat16 0.0858 (8.7%)"
+3.3,N+S+G PA-RSGD: binary16 0.1393 vs bfloat16 0.1411 (1.3%)
+3.3,"Table 5 RSGD: N+G 0.1919; S+G 0.3370; N+S+G 0.3379; N+S+G, large step 1.9683 (8/8 div.); N+S+G, low noise 0.0902"
+3.3,"Table 5 RSGD, decaying step: N+G 0.3874; S+G 0.0785; N+S+G 0.0967; N+S+G, large step 0.7265 (2/8 div.); N+S+G, low noise 0.2407"
+3.3,"Table 5 RSGD + drift re-orth.: N+G 0.1909; S+G 0.3370; N+S+G 0.3377; N+S+G, large step 1.1935; N+S+G, low noise 0.0901"
+3.3,"Table 5 PA step only (no re-orth.): N+G 1.5026 (6/8 div.); S+G 0.1395; N+S+G 0.1465; N+S+G, large step 0.1467; N+S+G, low noise 1.7595 (7/8 div.)"
+3.3,"Table 5 PA without precision edge: N+G 0.0094; S+G 0.1395; N+S+G 0.1463; N+S+G, large step 0.1465; N+S+G, low noise 0.0771"
+3.3,"Table 5 PA without noise step: N+G 0.0098; S+G 0.1395; N+S+G 0.1456; N+S+G, large step 0.1454; N+S+G, low noise 0.0782"
+3.3,"Table 5 PA without upper edge: N+G 1.3997; S+G 0.1395; N+S+G 0.1463; N+S+G, large step 0.1465; N+S+G, low noise 0.0771"
+3.3,"Table 5 Full PA-RSGD: N+G 0.0094; S+G 0.1395; N+S+G 0.1463; N+S+G, large step 0.1465; N+S+G, low noise 0.0771"
+3.3,"precision edge always on, low noise: Full PA-RSGD 0.0770; PA, precision edge always 0.0960"
+3.3,"Synthetic N: PA-RSGD 0.0100 vs oracle-tuned 0.0097 (3.1%); decaying 0.3691; best method ('Landing (tuned eta, lambda=1)', 0.0091)"
+3.3,"Synthetic S: PA-RSGD 0.1383 vs oracle-tuned 0.1285 (7.6%); decaying 0.0779; best method ('RSGD, decaying', 0.0779)"
+3.3,"Synthetic N+S: PA-RSGD 0.1466 vs oracle-tuned 0.1387 (5.7%); decaying 0.1043; best method ('RSGD, decaying', 0.1043)"
+3.3,"Synthetic N+S+G: PA-RSGD 0.1441 vs oracle-tuned 0.1365 (5.6%); decaying 0.0951; best method ('RSGD, decaying', 0.0951)"
+3.3,"Digits N+S+G: PA-RSGD 0.2348 vs oracle-tuned 0.1913 (22.7%); decaying 0.2071; best method ('RSVRG (tuned eta, finite sum)', 0.0074)"
+3.3,"tuned steps: precision only 0.18, noise 0.003 (factor 60); digits 0.005; RSVRG 0.108"
+3.3,transfer: step tuned under noise applied in Synthetic N: 1.66
+3.3,transfer: step tuned under precision applied in Synthetic S: 0.98
+3.3,spiked: sigma_0^2 = 5.07e+03; max error sqrt(p) = 3.16
+3.3,"spiked RSGD, eta=0.02: error 2.699 ± 0.001, drift 3.12"
+3.3,"spiked RSGD, decaying: error 1.300 ± 0.002, drift 0.281"
+3.3,"spiked RSGD, tuned eta=0.003: error 1.506 ± 0.002, drift 0.313"
+3.3,"spiked RSGD, tuned eta=0.003, SR: error 1.509 ± 0.008, drift 0.179"
+3.3,"spiked PA-RSGD: error 1.740 ± 0.035, drift 0.0242"
+3.3,"Hopkins N+S+G RSGD, fixed step: 0.023 ± 0.015 (sd over problems and seeds)"
+3.3,"Hopkins N+S+G RSGD, decaying step: 0.187 ± 0.313 (sd over problems and seeds)"
+3.3,Hopkins N+S+G PA-RSGD: 0.012 ± 0.009 (sd over problems and seeds)

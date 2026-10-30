@@ -21,6 +21,7 @@ ORDER = [
     "replication_and_stability.py",    # Table S4, Section 3.2 checks
     "formats.py",                      # Table S5
     "convergence_floors.py",           # Figure 2
+    "paper_numbers.py",                # PAPER_NUMBERS.md (numbers quoted in the text)
     "compare_with_paper.py",           # COMPARISON.md
 ]
 
@@ -29,6 +30,6 @@ if __name__ == "__main__":
     for script in ORDER:
         t0 = time.time()
         print(f"\n=== {script} ===", flush=True)
-        extra = [] if script == "compare_with_paper.py" else args
+        extra = [] if script in ("compare_with_paper.py", "paper_numbers.py") else args
         subprocess.run([sys.executable, os.path.join(HERE, script), *extra], check=True)
         print(f"--- {script}: {time.time() - t0:.0f} s", flush=True)

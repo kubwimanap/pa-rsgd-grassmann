@@ -17,6 +17,7 @@ data/hopkins/1R2RC/1R2RC_truth.mat
 data/hopkins/1R2RCR/1R2RCR_truth.mat
 ```
 
-exist. Each sequence gives one PCA problem per motion (six in total, p = 3).
+exist. Each sequence gives one PCA problem per motion: the centred 2F x P trajectory matrix of that motion,
+scaled so that its leading eigenvalue is 4, and its dominant p = 2 dimensional subspace (gap 0.9-2.5).
 If the files are absent, the Hopkins columns of Table S4 and the Hopkins row of
 Section 3.3 are reported as "not run".
