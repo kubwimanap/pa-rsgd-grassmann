@@ -157,7 +157,9 @@ def from_data(W, p, name, center=True):
 # --------------------------------------------------------------------------
 # Hopkins 155 (real data, must be supplied by the user)
 # --------------------------------------------------------------------------
-HOPKINS_SEQUENCES = ("1R2RC", "1R2RCR")
+HOPKINS_SEQUENCES = ("1R2RC", "1R2RCR", "1R2TCR", "2R3RTC", "2T3RCR",          # checkerboard
+                     "cars1", "cars2", "cars5", "three-cars", "truck1",          # traffic
+                     "articulated", "people1", "two_cranes", "kanatani1")      # articulated / other
 
 
 def hopkins_problems(root=None, p=2, sequences=HOPKINS_SEQUENCES):

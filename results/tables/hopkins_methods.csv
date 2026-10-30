@@ -1,4 +1,4 @@
 method,problems,error_mean,error_sd
-"RSGD, fixed step",3,0.0232129,0.0148042
-"RSGD, decaying step",3,0.187318,0.312939
-PA-RSGD,3,0.0119854,0.00862774
+"RSGD, fixed step",37,0.0595266,0.127563
+"RSGD, decaying step",37,0.297578,0.332764
+PA-RSGD,37,0.0110378,0.00570324

@@ -165,7 +165,7 @@ def main():
               "in the manuscript.",
               "6. **Hopkins 155.** The draft used per-motion problems with p = 3; for the sequence 1R2RC these are "
               "ill-conditioned (gap below 0.01 after scaling), so the repository uses centred trajectories with p = 2 "
-              "(gaps 0.9-2.5) and, so far, the single sequence 1R2RC.",
+              "(gaps 0.9-2.5) and 14 of the 155 sequences.",
               "7. **Periodic re-orthonormalisation (T = 10).** The stationary drift averaged over the reset cycle is "
               "about three times the manuscript value (Table 3), and so is its S x G drift contrast (Table 4).",
               "",
