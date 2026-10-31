@@ -14,8 +14,10 @@ ORDER = [
     "factorial_interaction.py",        # Table 4, Table S2, Figure 5
     "stability_boundaries.py",         # Table S1, Figure 3, scheme edges
     "practical_retractions.py",        # Table 3 (uses scheme edges)
-    "ablation.py",                     # Table 5
-    "baselines.py",                    # Table 6
+    "practical_retractions_real.py",   # Table S7 (real data)
+    "robustness_30seeds.py",           # Table S6, 30-run divergence test
+    "ablation.py",                     # Table 6
+    "baselines.py",                    # Table 5
     "figS1_digits.py",                 # Figure S1
     "large_problem.py",                # spiked n = 10^4
     "replication_and_stability.py",    # Table S4, Section 3.2 checks

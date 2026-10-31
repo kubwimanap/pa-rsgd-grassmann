@@ -70,9 +70,15 @@ def c_r(p, gamma, kappa=1.0):
     return 2.0 * np.sqrt(p) * (1.0 + gamma * kappa)
 
 
+def c_r_total(C: Constants, eta, p, gamma, kappa=1.0):
+    """c_r of Lemma 1 including the rounding of the computed direction:
+    2 sqrt(p)(1 + gamma kappa) + 2 gamma kappa eta ||X||_2 Gamma_N, with ||X||_2 ~ 1 at the solution."""
+    return c_r(p, gamma, kappa) + 2.0 * gamma * kappa * eta * C.Gamma_N
+
+
 def drift_bounds(C: Constants, eta, gamma, u, p, kappa=1.0):
     """Theorem 1 (ii)-(iii): first-moment and second-moment drift bounds."""
-    cru = c_r(p, gamma, kappa) * u
+    cru = c_r_total(C, eta, p, gamma, kappa) * u
     rho1, rho2 = gamma * kappa * C.q1, gamma * kappa * C.q2
     D1 = (gamma * kappa * eta ** 2 * C.m2 + cru) / (1 - rho1) if rho1 < 1 else np.inf
     D2 = (gamma * kappa * eta ** 2 * C.m4_half + cru) / (1 - rho2) if rho2 < 1 else np.inf
@@ -92,7 +98,7 @@ def drift_prediction_scheme(C: Constants, eta, scheme, u, p):
         j = np.arange(1, scheme.T + 1)
         return float(np.mean(D * (1 - rho ** j)))        # averaged over the reset cycle
     if kind == "landing":
-        return (eta ** 2 * C.m4_half + c_r(p, 1.0) * u) / (2 * eta * (max(C.mu_min, 0) + scheme.lam))
+        return (eta ** 2 * C.m4_half + c_r_total(C, eta, p, 1.0) * u) / (2 * eta * (max(C.mu_min, 0) + scheme.lam))
     if kind == "ns":
         return 0.75 * eta ** 4 * C.m4_half ** 2 + c_r(p, 0.0) * u
     raise ValueError(kind)

@@ -1,0 +1,13 @@
+data,scheme,runs,diverged,error_mean,error_sd,drift_mean,drift_max,ms_per_iter
+digits,exact polar retraction,10,0,0.32674,0.0123186,0.00533791,0.00559485,0.275126
+digits,no re-orthonormalization,10,0,0.32794,0.012985,0.0344571,0.0352169,0.192223
+digits,re-orthonormalize every 10 steps,10,0,0.327455,0.0132303,0.0144259,0.0149892,0.189152
+digits,one Newton-Schulz step,10,0,0.327544,0.0131679,0.00702411,0.00747489,0.219748
+digits,"landing, lambda=1",10,0,0.327814,0.0130124,0.0251995,0.0259574,0.230354
+digits,PA-RSGD (no re-orthonormalization + drift monitor),10,0,0.191912,0.0836194,0.0127655,0.0152751,0.353471
+hopkins,exact polar retraction,111,0,0.045025,0.0503944,0.00250442,0.00569564,0.236298
+hopkins,no re-orthonormalization,111,0,0.0431053,0.0433437,0.00736872,0.102279,0.160415
+hopkins,re-orthonormalize every 10 steps,111,0,0.043408,0.0443668,0.00261941,0.00525518,0.202128
+hopkins,one Newton-Schulz step,111,0,0.0444218,0.0467543,0.00371352,0.00899889,0.207581
+hopkins,"landing, lambda=1",111,0,0.0429412,0.0435539,0.00459149,0.0274099,0.204516
+hopkins,PA-RSGD (no re-orthonormalization + drift monitor),111,0,0.011292,0.00593558,0.00603411,0.0102839,0.327879

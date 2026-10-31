@@ -1,0 +1,9 @@
+data,scheme,predicted_edge,last_stable,first_unstable,inside
+digits,no re-orthonormalization,0.25,0.235591,0.254678,True
+digits,"landing, lambda=1",0.2,0.186492,0.201602,True
+digits,re-orthonormalize every 10 steps,NA,0.474956,0.513436,NA
+digits,one Newton-Schulz step,NA,0.43936,0.474956,NA
+hopkins,no re-orthonormalization,0.25,0.235591,0.254678,True
+hopkins,"landing, lambda=1",0.2,0.186492,0.201602,True
+hopkins,re-orthonormalize every 10 steps,NA,0.474956,0.513436,NA
+hopkins,one Newton-Schulz step,NA,0.43936,0.474956,NA

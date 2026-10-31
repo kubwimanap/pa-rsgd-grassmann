@@ -33,23 +33,26 @@ COMPARISON.md              values of the earlier manuscript draft next to the va
 
 ## Which script produces what
 
-Table numbers follow the article (Table 1 and Table 2 are literature tables, Table 3 maps results to experiments);
-the CSV file names keep an earlier numbering.
+Table numbers follow version 10 of the article (Table 1 compares the closest studies and Table 2 maps each
+result to its assumptions and experiments; neither has data). The CSV file names keep an earlier numbering.
 
 | Article item | Script | Output |
 |---|---|---|
 | Table S3, Figure 4, SR vs RN at t = 7 | `individual_perturbations.py` | `tableS3_individual.csv`, `fig4_*.csv`, `sr_vs_rn_t7.csv`, `fig4_scaling` |
-| Table 5, Table S2, Figure 5 | `factorial_interaction.py` | `table4_contrasts.csv`, `tableS2_additivity.csv`, `fig5_additivity` |
+| Table 4, Table S2, Figure 5 | `factorial_interaction.py` | `table4_contrasts.csv`, `tableS2_additivity.csv`, `fig5_additivity` |
 | Table S1, Figure 3, drift-stability edges | `stability_boundaries.py` | `tableS1_stability.csv`, `scheme_edges.csv`, `fig3_stability` |
-| Table 4 | `practical_retractions.py` | `table3_practical_retractions.csv` |
+| Table 3 | `practical_retractions.py` | `table3_practical_retractions.csv` |
+| Table S7 (practical retractions on digits and Hopkins 155) | `practical_retractions_real.py` | `practical_retractions_real.csv`, `practical_edges_real.csv` |
+| Table S6 and the 30-run divergence test (Section 6.3) | `robustness_30seeds.py` | `contrasts_30seeds.csv`, `divergence_30seeds.csv` |
+| Table 5 | `baselines.py` | `table6_*.csv` |
 | Table 6 | `ablation.py` | `table5_ablation.csv`, `table5_precision_always.csv` |
-| Table 7 | `baselines.py` | `table6_*.csv` |
 | Figure S1 | `figS1_digits.py` | `figS1_digits_traces.csv`, `figS1_digits` |
-| Spiked problem, n = 10^4 (Section 3.3) | `large_problem.py` | `large_spiked.csv` |
-| Table S4, divergence, reconstruction, damping (Section 3.2) | `replication_and_stability.py` | `tableS4_replication.csv`, `divergence_interaction.csv`, `reconstruction_drift.csv`, `damping_F2.csv`, `hopkins_methods.csv` |
+| Spiked problem, n = 10^4 (Section 6.4) | `large_problem.py` | `large_spiked.csv` |
+| Table S4, divergence, reconstruction, damping (Section 6.3) | `replication_and_stability.py` | `tableS4_replication.csv`, `divergence_interaction.csv`, `reconstruction_drift.csv`, `damping_F2.csv`, `hopkins_methods.csv` |
 | Table S5 | `formats.py` | `tableS5_formats.csv` |
 | Figure 2 | `convergence_floors.py` | `fig2_floors.csv`, `fig2_summary.csv`, `fig2_floors` |
-| Computational cost (Section 3.3) | `cost.py` | `cost.csv` |
+| Bounds of Figure 2 and Figure 4(c) after a change of `bounds.py` (no simulation) | `recompute_bounds.py` | `fig2_*.csv`, `fig4c_drift_vs_bound.csv` |
+| Computational cost (Section 6.4) | `cost.py` | `cost.csv` |
 | Every number quoted in the text | `paper_numbers.py` | `PAPER_NUMBERS.md`, `paper_numbers.csv` |
 | Figures from the CSV files (no simulation) | `make_figures.py` | `results/figures/*` |
 | Manuscript draft vs repository | `compare_with_paper.py` | `COMPARISON.md` |
@@ -97,8 +100,9 @@ Every script accepts `--quick` and `--workers N`. All random seeds are fixed, so
   matrix product, and `NativeArith` calls XLA's reduced-precision matrix kernels through JAX.
 * **Stationary quantities** are averaged over the last 20% of the recorded iterations; diverged runs are assigned the
   maximal error sqrt(p).
-* **A-priori bounds** (`bounds.py`) use only the data model at the solution and the corrected rounding constant of
-  Lemma 1, c_r = 2 sqrt(p) (1 + gamma kappa_star).
+* **A-priori bounds** (`bounds.py`) use only the data model at the solution and the rounding constant of Lemma 1
+  (version 10), c_r = 2 sqrt(p) (1 + gamma kappa_star) + 2 gamma kappa_star eta Gamma_N, whose last term accounts for
+  the rounding error of the computed direction.
 * **PA-RSGD** follows Algorithm 1: the outer minimum with eta_max and the drift monitor enforce the hard constraints of
   the window (21); eta_S, eta_K and eta_N are candidate steps inside the window, and the largest is taken.
 
